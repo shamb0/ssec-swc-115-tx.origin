@@ -13,6 +13,7 @@
       "baseUrl": "./",
       "resolveJsonModule": true,
       "esModuleInterop": true,
+      "skipLibCheck": true,
       "lib": [
         "es7"
       ],
@@ -20,8 +21,8 @@
         "node_modules/@types"
       ]
     },
-    "include": ["*.ts", "**/*.ts", "artifacts/*.json"],
-    "exclude": ["./build", "node_modules"],
+    "include": ["*.ts", "**/*.ts", "artifacts/*.json" ],
+    "exclude": ["./build", "node_modules" ],
     "files": [
     "./buidler.config.ts",
     "./node_modules/@nomiclabs/buidler-ethers/src/type-extensions.d.ts",

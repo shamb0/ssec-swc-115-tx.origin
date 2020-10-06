@@ -23,17 +23,18 @@ function getRandomNumberBetween( min:number , max:number ){
 
 describe('EtherGame Attack Test', () => {
   let wallet: Signer
-  let usr1: Signer
-  let usr2: Signer
-  let usr3: Signer
+  // let usr1: Signer
+  // let usr2: Signer
+  // let usr3: Signer
 
   before(async () => {
-    ;[wallet, usr1, usr2, usr3] = await ethers.getSigners()
+    // ;[wallet, usr1, usr2, usr3] = await ethers.getSigners()
+    ;[wallet] = await ethers.getSigners()
 
     log.info(`Admin :: ${await wallet.getAddress()}`)
-    log.info(`Usr1 :: ${await usr1.getAddress()}`)
-    log.info(`Usr2 :: ${await usr2.getAddress()}`)
-    log.info(`Usr3 :: ${await usr3.getAddress()}`)
+    // log.info(`Usr1 :: ${await usr1.getAddress()}`)
+    // log.info(`Usr2 :: ${await usr2.getAddress()}`)
+    // log.info(`Usr3 :: ${await usr3.getAddress()}`)
   })
 
   let phisablefact: ContractFactory
@@ -89,7 +90,7 @@ describe('EtherGame Attack Test', () => {
 
       let deploycfg: ContractDeployOptions = {
         factory: phishableattackfact,
-        params: [ phisableinst.address, await usr1.getAddress() ],
+        params: [ phisableinst.address, await wallet.getAddress() ],
         signer: wallet
       }
 
@@ -119,7 +120,7 @@ describe('EtherGame Attack Test', () => {
 
       log.debug(`S3-Ent :: ${ethers.utils.formatUnits( await wallet.getBalance(), "ether")}`)
 
-      log.debug(`b4 attack Usr1 Bal :: ${ethers.utils.formatUnits( await usr1.getBalance(), "ether")}`)
+      // log.debug(`b4 attack Usr1 Bal :: ${ethers.utils.formatUnits( await usr1.getBalance(), "ether")}`)
 
       const transamount = ethers.utils.parseUnits( "0.0", 18 );
 
@@ -131,7 +132,7 @@ describe('EtherGame Attack Test', () => {
 
       await phishableattackinst.provider.waitForTransaction( receipt.hash )
 
-      log.debug(`after attack Usr1 Bal :: ${ethers.utils.formatUnits( await usr1.getBalance(), "ether")}`)
+      // log.debug(`after attack Usr1 Bal :: ${ethers.utils.formatUnits( await usr1.getBalance(), "ether")}`)
 
       log.debug(`S3-Ext :: ${ethers.utils.formatUnits( await wallet.getBalance(), "ether")}`)
     }

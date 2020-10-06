@@ -3,6 +3,10 @@ import * as dotenv from "dotenv"
 
 import { usePlugin, BuidlerConfig } from "@nomiclabs/buidler/config"
 
+const Kit = require('@celo/contractkit')
+
+// import { Kit } from "@celo/contractkit"
+
 import {
   DEFAULT_ACCOUNTS_BUIDLER,
   GAS_LIMIT,
@@ -32,6 +36,15 @@ if (envfilestate === false) {
   // console.log( result.parsed )
 }
 
+// Connect to the desired network
+const kit = Kit.newKit('https://alfajores-forno.celo-testnet.org')
+// const kit = Kit.newKit('https://forno.celo.org') // mainnet endpoint
+
+async function awaitWrapper(){
+  kit.addAccount(`0x${process.env.CELO_ALFAJORES_PRIVATE_KEY_OWNER1}`)
+}
+
+awaitWrapper()
 
 const config: BuidlerConfig = {
   defaultNetwork: "buidlerevm",
@@ -59,6 +72,16 @@ const config: BuidlerConfig = {
         `0x${process.env.KOVAN_PRIVATE_KEY_OWNER2}`,
       ],
     },
+    alfajores: {
+      url: `https://alfajores-forno.celo-testnet.org`,
+      gas: "auto",
+      gasPrice: "auto",
+      provider: kit.web3.currentProvider,
+      network_id: 44787,
+      accounts: [
+        `0x${process.env.CELO_ALFAJORES_PRIVATE_KEY_OWNER1}`,
+      ],
+    } as any,
   },
   mocha: {
     timeout: 5000000,

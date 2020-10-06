@@ -36,6 +36,7 @@
   },
   "homepage": "https://github.com/shamb0/ssec-swc-115-tx.origin#readme",
   "devDependencies": {
+    "@celo/contractkit": "^0.4.14",
     "@nomiclabs/buidler": "^1.4.5",
     "@nomiclabs/buidler-ethers": "^2.0.0",
     "@nomiclabs/buidler-waffle": "^2.1.0",

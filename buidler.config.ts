@@ -3,9 +3,7 @@ import * as dotenv from "dotenv"
 
 import { usePlugin, BuidlerConfig } from "@nomiclabs/buidler/config"
 
-const Kit = require('@celo/contractkit')
-
-// import { Kit } from "@celo/contractkit"
+import { newKit } from "@celo/contractkit"
 
 import {
   DEFAULT_ACCOUNTS_BUIDLER,
@@ -37,7 +35,7 @@ if (envfilestate === false) {
 }
 
 // Connect to the desired network
-const kit = Kit.newKit('https://alfajores-forno.celo-testnet.org')
+const kit = newKit('https://alfajores-forno.celo-testnet.org')
 // const kit = Kit.newKit('https://forno.celo.org') // mainnet endpoint
 
 async function awaitWrapper(){

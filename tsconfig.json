@@ -22,7 +22,7 @@
       ]
     },
     "include": ["*.ts", "**/*.ts", "artifacts/*.json" ],
-    "exclude": ["./build", "node_modules" ],
+    "exclude": ["./build" ],
     "files": [
     "./buidler.config.ts",
     "./node_modules/@nomiclabs/buidler-ethers/src/type-extensions.d.ts",

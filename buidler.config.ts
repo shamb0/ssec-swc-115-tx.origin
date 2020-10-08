@@ -3,7 +3,8 @@ import * as dotenv from "dotenv"
 
 import { usePlugin, BuidlerConfig } from "@nomiclabs/buidler/config"
 
-import { newKit } from "@celo/contractkit"
+// import { newKit } from "@celo/contractkit"
+import { CeloProvider } from '@celo-tools/celo-ethers-wrapper'
 
 import {
   DEFAULT_ACCOUNTS_BUIDLER,
@@ -34,15 +35,11 @@ if (envfilestate === false) {
   // console.log( result.parsed )
 }
 
-// Connect to the desired network
-const kit = newKit('https://alfajores-forno.celo-testnet.org')
-// const kit = Kit.newKit('https://forno.celo.org') // mainnet endpoint
+// let kit = newKit('https://alfajores-forno.celo-testnet.org')
+// kit.addAccount(`0x${process.env.CELO_ALFAJORES_PRIVATE_KEY_OWNER1}`)
 
-async function awaitWrapper(){
-  kit.addAccount(`0x${process.env.CELO_ALFAJORES_PRIVATE_KEY_OWNER1}`)
-}
-
-awaitWrapper()
+let celoproviderwrap = new CeloProvider('https://alfajores-forno.celo-testnet.org')
+// await celoproviderwrap.ready
 
 const config: BuidlerConfig = {
   defaultNetwork: "buidlerevm",
@@ -74,7 +71,7 @@ const config: BuidlerConfig = {
       url: `https://alfajores-forno.celo-testnet.org`,
       gas: "auto",
       gasPrice: "auto",
-      provider: kit.web3.currentProvider,
+      provider: celoproviderwrap,
       network_id: 44787,
       accounts: [
         `0x${process.env.CELO_ALFAJORES_PRIVATE_KEY_OWNER1}`,

@@ -6,7 +6,7 @@ import { readArtifact } from '@nomiclabs/buidler/plugins'
 
 import { Contract, ContractFactory, Signer, BigNumber, utils, providers } from 'ethers'
 import {
-  getContractFactory, sleep, sendLT, getBalanceLT, ContractDeployOptions, deployContract, linkBytecode
+  getContractFactory, sleep, sendLT, getBalanceLT, ContractDeployOptions, deployContract, linkBytecode, getCeloAccount
 } from './test-utils'
 
 import { getLogger } from './test-utils'
@@ -35,6 +35,8 @@ describe('EtherGame Attack Test', () => {
     // log.info(`Usr1 :: ${await usr1.getAddress()}`)
     // log.info(`Usr2 :: ${await usr2.getAddress()}`)
     // log.info(`Usr3 :: ${await usr3.getAddress()}`)
+    let celoadd = await getCeloAccount()
+    log.info(`Celo Acc Add :: ${ celoadd.address }`)
   })
 
   let phisablefact: ContractFactory
